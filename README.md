@@ -1,9 +1,9 @@
 # 📊 Controle de Estoque - Loja de Presentes 🎁
 
 ### 👯‍♀️ Integrantes do Grupo
-- Gabriela da Silva Rodrigues https://github.com/bagirodrigues
-- Gabriele Aparecida Bispo Chalegre
-- Lucas Ferreira Maciel
+- Gabriela da Silva Rodrigues (https://github.com/bagirodrigues)
+- Gabriele Aparecida Bispo Chalegre (https://github.com/gab-ie)
+- Lucas Ferreira Maciel https://github.com/luca-maciel
 
 ### Descrição do Sistema
 
