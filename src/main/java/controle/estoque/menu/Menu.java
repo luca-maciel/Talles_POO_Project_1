@@ -27,13 +27,13 @@ public class Menu {
             opc = Integer.parseInt(sc.nextLine());
 
             switch (opc) {
-                case 1 -> cadastrarProduto();
-                case 2 -> listarProdutos();
-                case 3 -> entrada();
-                case 4 -> saida();
-                case 5 -> listarMovimentacoes();
-                case 0 -> System.out.println("Encerrando...");
-                default -> System.out.println("Opção Inválida");
+    case 1 -> cadastrarProduto();
+    case 2 -> entrada();
+    case 3 -> saida();
+    case 4 -> listarProdutos();
+    case 5 -> listarMovimentacoes();
+    case 0 -> System.out.println("Encerrando...");
+    default -> System.out.println("Opção Inválida");
             }
         } while (opc != 0);
     }
