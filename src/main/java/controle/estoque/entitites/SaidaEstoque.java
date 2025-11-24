@@ -1,4 +1,7 @@
 package controle.estoque.entitites;
+import controle.estoque.exceptions.EstoqueInsuficienteException;
+import java.time.LocalDate;
+
 
 public class SaidaEstoque extends Movimentacao {
     private Cliente cliente;
