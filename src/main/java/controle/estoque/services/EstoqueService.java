@@ -1,8 +1,8 @@
 package controle.estoque.services;
 
 import controle.estoque.entitites.Produto;
-import controle.estoque.entitites.movimentacoes.EntradaEstoque;
-import controle.estoque.entitites.movimentacoes.SaidaEstoque;
+import controle.estoque.entitites.EntradaEstoque;
+import controle.estoque.entitites.SaidaEstoque;
 import controle.estoque.exceptions.EstoqueInsuficienteException;
 import controle.estoque.repositories.MovimentacaoRepository;
 import controle.estoque.repositories.ProdutoRepository;
