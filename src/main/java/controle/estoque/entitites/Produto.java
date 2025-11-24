@@ -8,9 +8,11 @@ public class Produto {
     private String descricao;
     private Categoria categoria;
     private Fornecedor fornecedor;
-    //private ArrayList<>
 
-    public Produto (){}
+
+    public Produto (){
+
+    }
 
     public Produto(int id, String nome, double preco, int quantidadeEstoque, String descricao, Categoria categoria, Fornecedor fornecedor) {
         this.id = id;
@@ -69,7 +71,7 @@ public class Produto {
         this.preco = preco;
     }
 
-    public int getQuantidadeEstoque(int quantidade) {
+    public int getQuantidadeEstoque() {
         return quantidadeEstoque;
     }
 

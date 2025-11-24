@@ -28,14 +28,6 @@ public class Fornecedor {
     }
 
 
-    /*public void quantidadeProdutosFornecidos(){
-        int total = 0;
-        for (EntradaEstoque entrada : fornecimentos){
-            total += entrada.getQuantidade();
-        }
-        return total;
-    }*/
-
     public int getId() {
         return id;
     }
