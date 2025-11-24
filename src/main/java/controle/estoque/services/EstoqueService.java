@@ -1,44 +1,55 @@
 package controle.estoque.services;
 
-import controle.estoque.entitites.*;
+import controle.estoque.entitites.Produto;
+import controle.estoque.entitites.movimentacoes.EntradaEstoque;
+import controle.estoque.entitites.movimentacoes.SaidaEstoque;
 import controle.estoque.exceptions.EstoqueInsuficienteException;
 import controle.estoque.repositories.MovimentacaoRepository;
 import controle.estoque.repositories.ProdutoRepository;
+
 import java.time.LocalDate;
 
 public class EstoqueService {
+
     private ProdutoRepository produtoRepo;
     private MovimentacaoRepository movRepo;
 
-    public EstoqueService(ProdutoRepository pr, MovimentacaoRepository mr) {
-        this.produtoRepo = pr;
-        this.movRepo = mr;
+    public EstoqueService(ProdutoRepository produtoRepo, MovimentacaoRepository movRepo) {
+        this.produtoRepo = produtoRepo;
+        this.movRepo = movRepo;
     }
 
-    public void entradaEstoque(Produto p, int qtd) {
-        p.setQuantidadeEstoque(p.getQuantidadeEstoque() + qtd);
-
-        EntradaEstoque mov = new EntradaEstoque();
-        mov.setProduto(p);
-        mov.setQuantidade(qtd);
-        mov.setData(LocalDate.now());
-
-        movRepo.adicionar(mov);
-        produtoRepo.atualizar();
-    }
-
-    public void saidaEstoque(Produto p, int qtd) throws EstoqueInsuficienteException {
-        if (p.getQuantidadeEstoque() < qtd) {
-            throw new EstoqueInsuficienteException("Quantidade insuficiente no estoque!");
+    public void entradaEstoque(Produto produto, int quantidade) {
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException("Quantidade precisa ser maior que zero.");
         }
-        p.setQuantidadeEstoque(p.getQuantidadeEstoque() - qtd);
 
-        SaidaEstoque mov = new SaidaEstoque();
-        mov.setProduto(p);
-        mov.setQuantidade(qtd);
-        mov.setData(LocalDate.now());
+        produto.setQuantidadeEstoque(produto.getQuantidadeEstoque() + quantidade);
 
-        movRepo.adicionar(mov);
-        produtoRepo.atualizar();
+        EntradaEstoque entrada = new EntradaEstoque();
+        entrada.setProduto(produto);
+        entrada.setQuantidade(quantidade);
+        entrada.setData(LocalDate.now());
+
+        movRepo.adicionar(entrada);
+        produtoRepo.salvarDados();
+    }
+
+    public void saidaEstoque(Produto produto, int quantidade) {
+        if (quantidade <= 0)
+            throw new IllegalArgumentException("Quantidade inválida");
+
+        if (produto.getQuantidadeEstoque() < quantidade)
+            throw new EstoqueInsuficienteException("Estoque insuficiente");
+
+        produto.setQuantidadeEstoque(produto.getQuantidadeEstoque() - quantidade);
+
+        SaidaEstoque saida = new SaidaEstoque();
+        saida.setProduto(produto);
+        saida.setQuantidade(quantidade);
+        saida.setData(LocalDate.now());
+
+        movRepo.adicionar(saida);
+        produtoRepo.salvarDados();
     }
 }
