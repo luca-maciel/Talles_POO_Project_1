@@ -1,18 +1,27 @@
+// Main criado para testar a conexão com o banco
+
 package controle.estoque.database;
 import controle.estoque.exceptions.DbConnectionErrorException;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DbConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/estoque_db";
-    private static final String USER = "root";
-    private static final String PASSWORD = "senha";
+    // Muda para a URL do banco em questão
+    private static final String URL = "jdbc:postgresql://localhost:5432/teste";
+    // Muda para o user do banco
+    private static final String USER = "postgres";
+    // Senha do user do banco
+    private static final String PASSWORD = "7695";
 
-    public static Connection getConnection() {
+    public static Statement getConnection() {
         try {
-            return DriverManager.getConnection(URL, USER, PASSWORD);
+            try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+                Statement st = conn.createStatement();
+                return st;
+            }
         }
         catch (SQLException e) {
             throw new DbConnectionErrorException("Erro ao conectar ao banco");
