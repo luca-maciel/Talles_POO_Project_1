@@ -1,16 +1,17 @@
 package controle.estoque.utils;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DateUtils {
-    public static LocalDateTime parse(String data) {
-        DateTimeFormatter f = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return LocalDateTime.parse(data, f);
+    private static final DateTimeFormatter f =
+            DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    public static LocalDate parse(String data) {
+        return LocalDate.parse(data, f);
     }
 
-    public static String fmt(LocalDateTime d) {
-        DateTimeFormatter f = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public static String fmt(LocalDate d) {
         return d.format(f);
     }
 }
