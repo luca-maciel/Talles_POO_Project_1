@@ -32,7 +32,7 @@ Validar dados (CPF, CNPJ, e-mail etc.)
 
 1. Clonar o repositório
 
-git clone https://github.com/usuario/projeto-estoque.git
+git clone https://github.com/luca-maciel/Talles_POO_Project_1
 cd projeto-estoque
 
 2. Compilar
