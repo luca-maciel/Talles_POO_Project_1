@@ -8,101 +8,142 @@
 
 ### Descrição do Sistema
 
-O projeto é um sistema de controle de estoque desenvolvido em Java, utilizando:
+O sistema é um controle de estoque desenvolvido em Java, aplicando todos os principais conceitos de Programação Orientada a Objetos.
+Ele permite:
 
-Herança
-Polimorfismo
-Serialização
-Exceptions personalizadas
-Arquivos .dat
-Menu interativo
-Organização por camadas (Entities, Repositories, Services, Utils)
-
-O sistema permite:
-
-Cadastrar produtos
-Registrar entradas e saídas de estoque
-Gerar movimentações
-Persistir dados no disco
-Listar relatórios
-Validar dados (CPF, CNPJ, e-mail etc.)
+- Cadastro de produtos
+- Entrada e saída de estoque
+- Registro de movimentações (histórico)
+- Relatórios simples
+- Persistência dos dados usando serialização
+- Validações com exceptions personalizadas
+- Uso de herança, classes abstratas e polimorfismo
 
 
-### Como Executar
+O sistema é acessado por meio de um menu interativo, executado no console, onde o usuário escolhe as operações desejadas.
+
+
+### Como Executar o Sistema
 
 1. Clonar o repositório
-
-git clone https://github.com/luca-maciel/Talles_POO_Project_1
-cd projeto-estoque
+git clone https://github.com/luca-maciel/Talles_POO_Project_1 cd projeto-estoque
 
 2. Compilar
-
 javac -d bin src/**/*.java
 
 3. Executar
-
 java -cp bin controle.estoque.Main
 
 
-### Conceitos Implementados (onde encontrar cada um)
+### Conceitos Implementados (e onde encontrar)
 
 1. Estruturas Lógicas
 
-if/else → validações de CPF, CNPJ, e-mail
+Local:
 
-switch → Menu
+Menu.java (switch-case de opções, loops)
 
-loops → listagens e buscas
+Produto.java, Pessoa.java, Fornecedor.java (validações em setters)
+
+EstoqueService.java (validação de estoque)
 
 
 2. Construtores
 
-Exemplo: Produto, Categoria, Fornecedor.
+Local:
+
+Todas as entidades possuem construtor vazio e construtor com parâmetros
+Exemplos:
+
+Produto.java
+
+Categoria.java
+
+Fornecedor.java
+
+EntradaEstoque.java / SaidaEstoque.java
 
 
 3. Encapsulamento
 
-Todos os atributos são privados → getters/setters com validação.
+Local:
+
+Todos os atributos são privados
+
+Getters/setters implementados corretamente
+
+Setters com validações
+Exemplos:
+
+Pessoa.java (validação de nome, email, CPF)
+
+Fornecedor.java (validação de CNPJ)
 
 
-4. Herança + Abstract
+4. Herança + Classe Abstrata
 
-Classe abstrata: Pessoa
+Local:
 
-Filhas: Cliente, Funcionario
+Classe abstrata: Movimentacao.java
 
-Classe abstrata: Movimentacao
+Filhas:
 
-Filhas: EntradaEstoque, SaidaEstoque
+EntradaEstoque.java
+
+SaidaEstoque.java
 
 
-5. Polimorfismo + ArrayList
+Outra hierarquia:
 
-ArrayList<Movimentacao> armazena entradas e saídas
+Pessoa.java → Cliente.java / Funcionario.java
+
+
+5. Polimorfismo + ArrayList + Relacionamento
+
+Local:
+
+MovimentacaoRepository.java
+
+ArrayList<Movimentacao> armazena EntradaEstoque e SaidaEstoque (polimorfismo)
+
 
 Relacionamentos:
 
 Categoria → Produtos (1:N)
 
-Produto → Movimentações (N:N, via service)
+Movimentações ↔ Produtos (N:N)
 
 
 6. Serialização
 
+Local:
+
 Serializador.java
+Usado por:
 
-Produtos e Movimentações são salvos em:
+ProdutoRepository.java
 
-produtos.dat
-
-movimentacoes.dat
+MovimentacaoRepository.java
 
 
-7. Exceptions Personalizadas
+Permite persistência dos dados entre execuções.
 
-CPFInvalidoException
 
-DbConnectionErrorException
+7. Exceptions + Tratamento
 
-EstoqueInsuficienteException
+Local:
 
+Exceptions personalizadas:
+
+CPFInvalidoException.java
+
+DbConnectionErrorException.java
+
+EstoqueInsuficienteException.java
+
+
+Tratamento em:
+
+Menu.java
+
+EstoqueService.java
