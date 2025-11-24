@@ -20,10 +20,13 @@ public class ProdutoRepository {
         Serializador.salvar(produtos, ARQUIVO);
     }
 
-    public void adicionar(Produto p) {
-        produtos.add(p);
-        salvarDados();
-    }
+    private int proximoId = 1;
+
+public void adicionar(Produto p) {
+    p.setId(proximoId++);
+    produtos.add(p);
+    salvarDados();
+}
 
     public ArrayList<Produto> getTodos() {
         return produtos;
