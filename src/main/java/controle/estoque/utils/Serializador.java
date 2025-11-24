@@ -1,24 +1,22 @@
 package controle.estoque.utils;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class Serializador {
-    public static void salvar(Object obj, String arquivo) throws IOException {
-        new File("data").mkdirs();
-
-        try (ObjectOutputStream out = new ObjectOutputStream(
-                new FileOutputStream("data/" + arquivo))) {
-                out.writeObject(obj);
+    public static <T> void salvar(T obj, String nomeArquivo) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(nomeArquivo))) {
+            out.writeObject(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    public static Object carregar(String arquivo) throws IOException, ClassNotFoundException {
-        File file = new File("data/" + arquivo);
-        if (!file.exists()) return null;
-
-        try (ObjectInputStream in = new ObjectInputStream(
-                new FileInputStream(file))) {
-                return in.readObject();
+    public static <T> T carregar(String nomeArquivo) {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomeArquivo))) {
+            return (T) in.readObject();
+        } catch (Exception e) {
+            return null;
         }
     }
 }
