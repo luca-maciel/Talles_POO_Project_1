@@ -1,9 +1,10 @@
-# 📊 Controle de Estoque - Loja de Presentes 🎁
+# Controle de Estoque - Loja de Presentes 
 
-### 👯‍♀️ Integrantes do Grupo
+### Integrantes do Grupo
 - Gabriela da Silva Rodrigues https://github.com/bagirodrigues
 - Gabriele Aparecida Bispo Chalegre https://github.com/gab-ie
 - Lucas Ferreira Maciel https://github.com/luca-maciel
+
 
 ### Descrição do Sistema
 
@@ -25,7 +26,6 @@ Gerar movimentações
 Persistir dados no disco
 Listar relatórios
 Validar dados (CPF, CNPJ, e-mail etc.)
-
 
 
 ### Como Executar
@@ -55,17 +55,14 @@ switch → Menu
 loops → listagens e buscas
 
 
-
 2. Construtores
 
 Exemplo: Produto, Categoria, Fornecedor.
 
 
-
 3. Encapsulamento
 
 Todos os atributos são privados → getters/setters com validação.
-
 
 
 4. Herança + Abstract
@@ -79,7 +76,6 @@ Classe abstrata: Movimentacao
 Filhas: EntradaEstoque, SaidaEstoque
 
 
-
 5. Polimorfismo + ArrayList
 
 ArrayList<Movimentacao> armazena entradas e saídas
@@ -91,7 +87,6 @@ Categoria → Produtos (1:N)
 Produto → Movimentações (N:N, via service)
 
 
-
 6. Serialização
 
 Serializador.java
@@ -101,7 +96,6 @@ Produtos e Movimentações são salvos em:
 produtos.dat
 
 movimentacoes.dat
-
 
 
 7. Exceptions Personalizadas
