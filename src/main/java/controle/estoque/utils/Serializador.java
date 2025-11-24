@@ -4,19 +4,30 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class Serializador {
-    public static <T> void salvar(T obj, String nomeArquivo) {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(nomeArquivo))) {
-            out.writeObject(obj);
+
+    public static <T> void salvar(ArrayList<T> lista, String arquivo) {
+        try (ObjectOutputStream out = new ObjectOutputStream(
+                new BufferedOutputStream(new FileOutputStream(arquivo)))) {
+
+            out.writeObject(lista);
+
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Erro ao salvar arquivo " + arquivo + ": " + e.getMessage());
         }
     }
 
-    public static <T> T carregar(String nomeArquivo) {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomeArquivo))) {
-            return (T) in.readObject();
+    public static <T> ArrayList<T> carregar(String arquivo) {
+        File f = new File(arquivo);
+        if (!f.exists()) return new ArrayList<>();
+
+        try (ObjectInputStream in = new ObjectInputStream(
+                new BufferedInputStream(new FileInputStream(arquivo)))) {
+
+            return (ArrayList<T>) in.readObject();
+
         } catch (Exception e) {
-            return null;
+            System.out.println("Erro ao carregar arquivo " + arquivo + ": " + e.getMessage());
+            return new ArrayList<>();
         }
     }
 }
