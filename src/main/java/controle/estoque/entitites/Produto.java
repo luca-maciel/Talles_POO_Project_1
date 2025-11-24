@@ -1,7 +1,5 @@
 package controle.estoque.entitites;
 
-import java.util.ArrayList;
-
 public class Produto {
     private int id;
     private String nome;
@@ -25,15 +23,26 @@ public class Produto {
     }
 
     public void temEstoque (){
+        if (quantidadeEstoque > 0){
+            System.out.println("Tem em estoque.");
+        }
     }
 
-    public void aumentarEstoque (){
+    public void aumentarEstoque ( int quantidadeAumentar){
+        this.quantidadeEstoque += quantidadeAumentar;
     }
 
-    public void abaterEstoque (){
+    public void abaterEstoque (int quantidadeAbater){
+        this.quantidadeEstoque += quantidadeAbater;
+
+        if (this.quantidadeEstoque < 0){
+            this.quantidadeEstoque =0;
+        }
     }
 
-    //public void calcularValorTotalEstoque (){}
+    public double calcularValorTotalEstoque (){
+        return this.preco * this.quantidadeEstoque;
+    }
 
 
     public int getId() {
@@ -60,7 +69,7 @@ public class Produto {
         this.preco = preco;
     }
 
-    public int getQuantidadeEstoque() {
+    public int getQuantidadeEstoque(int quantidade) {
         return quantidadeEstoque;
     }
 

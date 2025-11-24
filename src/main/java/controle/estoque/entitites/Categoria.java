@@ -6,7 +6,7 @@ public class Categoria {
     private int id;
     private String nome;
     private String descricao;
-    //private ArrayList<>
+    private ArrayList<Produto> produtos = new ArrayList<>();
 
     public Categoria (){}
 
@@ -16,15 +16,19 @@ public class Categoria {
         this.descricao = descricao;
     }
 
-    public void adicionarProduto(){
+    public void adicionarProduto(Produto produto){
+        this.produtos.add(produto);
+
     }
 
-    public void removerProduto (){
+    public void removerProduto (Produto produto){
+        this.produtos.remove(produto);
     }
 
     //public ArrayList<Produto> listarProdutos(ArrayList<Produto>){}
 
-    public void contarProdutos (){
+    public int contarProdutos (){
+        return this.produtos.size();
     }
 
     public int getId() {

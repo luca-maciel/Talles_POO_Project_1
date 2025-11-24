@@ -8,7 +8,7 @@ public class Funcionario extends Pessoa {
     private double salario;
     private LocalDate dataAdmissao;
     private boolean ativo;
-    private ArrayList<Movimentacao> vendasFeitas;
+    private ArrayList<SaidaEstoque> vendasFeitas = new ArrayList<>();
 
     public Funcionario() {
     }
@@ -21,10 +21,17 @@ public class Funcionario extends Pessoa {
     }
 
 
-    public void registrarVenda (){
+    public void registrarVenda (SaidaEstoque venda){
+        this.vendasFeitas.add(venda);
+
     }
 
-    public void calcularTotalVendas(){
+    public double calcularTotalVendas(){
+        double total = 0;
+        for (SaidaEstoque venda : vendasFeitas){
+            total += venda.getValorTotal();
+        }
+        return total;
     }
 
 

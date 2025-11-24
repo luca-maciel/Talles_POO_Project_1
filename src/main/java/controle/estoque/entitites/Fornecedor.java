@@ -9,7 +9,7 @@ public class Fornecedor {
     private String telefone;
     private String email;
     private String endereco;
-    //private ArrayList<>
+    private ArrayList<EntradaEstoque> fornecimentos = new ArrayList<>();
 
     public Fornecedor (){
     }
@@ -23,14 +23,25 @@ public class Fornecedor {
         this.endereco = endereco;
     }
 
-    public void quantidadeProdutosFornecidos(){
+    public void registrarFornecimento(EntradaEstoque entrada) {
+        this.fornecimentos.add(entrada);
     }
+
+
+    /*public void quantidadeProdutosFornecidos(){
+        int total = 0;
+        for (EntradaEstoque entrada : fornecimentos){
+            total += entrada.getQuantidade();
+        }
+        return total;
+    }*/
 
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
+        if (id <= 0) throw new IllegalArgumentException("ID inválido");
         this.id = id;
     }
 
@@ -47,6 +58,8 @@ public class Fornecedor {
     }
 
     public void setCnpj(String cnpj) {
+        if (cnpj == null || !cnpj.matches("\\d{14}"))
+            throw new IllegalArgumentException("CNPJ inválido");
         this.cnpj = cnpj;
     }
 

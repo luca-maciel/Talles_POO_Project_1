@@ -13,8 +13,14 @@ public class SaidaEstoque extends Movimentacao {
         this.valorTotal = valorTotal;
     }
 
-    public void registrarSaida(){
-    }
+
+   public void abaterEstoque (int quantidadeAbater){
+        if (this.quantidade >= quantidadeAbater){
+            this.quantidade -= quantidadeAbater;
+        } else {
+            throw new RuntimeException("Estoque insuficiente");
+        }
+   }
 
     @Override
     public String getTipoMovimentacao() {
@@ -34,6 +40,12 @@ public class SaidaEstoque extends Movimentacao {
     }
 
     public void setFormaPagamento(String formaPagamento) {
+        if (!formaPagamento.equalsIgnoreCase("pix") &&
+                !formaPagamento.equalsIgnoreCase("crédito") &&
+                !formaPagamento.equalsIgnoreCase("débito") &&
+                !formaPagamento.equalsIgnoreCase("dinheiro"))
+            throw new IllegalArgumentException("Forma de pagamento inválida");
+
         this.formaPagamento = formaPagamento;
     }
 
@@ -42,6 +54,8 @@ public class SaidaEstoque extends Movimentacao {
     }
 
     public void setValorTotal(double valorTotal) {
+        if (valorTotal <= 0)
+            throw new IllegalArgumentException("Valor total inválido");
         this.valorTotal = valorTotal;
     }
 }

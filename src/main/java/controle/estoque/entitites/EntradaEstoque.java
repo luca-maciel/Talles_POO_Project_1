@@ -10,7 +10,9 @@ public class EntradaEstoque extends Movimentacao {
         this.fornecedor = fornecedor;
     }
 
-    public void registrarEntrada (){}
+    public void registrarEntrada (){
+        this.produto.aumentarEstoque(this.quantidade);
+    }
 
     @Override
     public String getTipoMovimentacao() {

@@ -1,10 +1,13 @@
 package controle.estoque.entitites;
 
-public class Cliente extends Pessoa {
-    // private ArrayList<>;
+import java.util.ArrayList;
 
-    public void adicionarCompra(){
+public class Cliente extends Pessoa {
+    private ArrayList<SaidaEstoque> compras = new ArrayList<>();
+
+    public void adicionarCompra(SaidaEstoque venda){
+        this.compras.add(venda);
+        }
     }
 
 
-}
